@@ -8,7 +8,7 @@
 <body>
 
     <section>
-        <form action="#">
+        <form id="lineup-form" action="#">
             <legend>Escalar um jogador</legend>
             <fieldset>
                 <label for="player-name">Nome:</label>
@@ -22,7 +22,7 @@
                 <label for="player-number">Número:</label>
                 <input type="number" id="player-number">
             </fieldset>
-            <button onclick="lineUpPlayer()">Escalar jogador</button>
+            <button type="button" onclick="lineUpPlayer()">Escalar jogador</button>
         </form>
         <form action="#">
             <legend>Remover um jogador</legend>
@@ -30,7 +30,7 @@
                 <label for="player-Rnumber">Número:</label>
                 <input type="number" id="player-Rnumber">
             </fieldset>
-            <button onclick="removePlayer()">Remover jogador</button>
+            <button type="button" onclick="removePlayer()">Remover jogador</button>
         </form>
         <div id="team-players"></div>
         
