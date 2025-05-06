@@ -1,24 +1,35 @@
-const actionBtn = document.getElementById('action-button');
-const actionBtnTwo = document.getElementById('action-button2');
-const actionText = document.getElementById('action-text');
-const actionTextTwo = document.getElementById('action-text2');
+const form = document.getElementById('cadastro-form');
 
-const showMessage = () => {
-    alert('Clicado!')
-}
-actionBtn.addEventListener('click', showMessage);
-actionBtnTwo.addEventListener('dblclick', showMessage);
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const nameField = form.children.nome;
+  const emailField = form.children.email;
+  const passwordField = form.children.senha;
 
-actionText.addEventListener('mouseover', () => {
-    alert('Mouse detectado!');
-})
-actionText.addEventListener('mouseout', () => {
-    alert('Mouse não detectado')
-})
+  if (nameField.value === '') {
+    alert('Digite o nome para continuar o cadastro.');
+    nameField.focus();
+    return
+  } 
 
-actionTextTwo.addEventListener('mousedown', () => {
-    console.log('Mouse pressionado..')
-})
-actionTextTwo.addEventListener('mouseup', () => {
-    console.log('Mouse solto')
-})
+  if (emailField.value === '') {
+    alert('Digite o email para continuar o cadastro.');
+    emailField.focus()
+    return
+  } 
+
+  if (passwordField.value === '') {
+    alert('Digite a senha para continuar o cadastro.')
+    passwordField.focus()
+    return
+  } 
+
+  if (passwordField.value.length < 6) {
+    alert('A senha precisa ter pelo menos 6 (Seis) digitos ')
+    return
+  } 
+
+  alert('Usuário cadastrado com sucesso!');
+  form.reset();
+  
+});
