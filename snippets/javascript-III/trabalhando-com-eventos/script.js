@@ -1,7 +1,9 @@
 const form = document.getElementById('cadastro-form');
+const registerBtn = document.getElementById('register-button');
+const removeBtn = document.getElementById('remove-event');
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
+function register(ev) {
+  ev.preventDefault();
   const nameField = form.children.nome;
   const emailField = form.children.email;
   const passwordField = form.children.senha;
@@ -28,8 +30,13 @@ form.addEventListener('submit', (event) => {
     alert('A senha precisa ter pelo menos 6 (Seis) digitos ')
     return
   } 
+  alert(`Usuário "${nameField.value}" cadastrado com sucesso.`)
+}
 
-  alert('Usuário cadastrado com sucesso!');
-  form.reset();
-  
-});
+form.addEventListener('submit', register);
+
+removeBtn.addEventListener('click', () => {
+  form.removeEventListener('submit', register)
+  registerBtn.disabled = true;
+  alert('Evento removido com sucesso.');
+})
