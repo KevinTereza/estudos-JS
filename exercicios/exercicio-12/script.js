@@ -1,9 +1,10 @@
 const form = document.getElementById('dev-form');
+const devs = [];
 const techBtn = document.getElementById('add-tech-btn');
 const techList = document.getElementById('tech-list');
 
 techBtn.addEventListener('click', (ev) => {
-    techItem = document.createElement('div')
+    const techItem = document.createElement('div')
     const techLabel = document.createElement('label');
     const techInput = document.createElement('input');
     const radioLabelJr = document.createElement('label');
@@ -12,6 +13,7 @@ techBtn.addEventListener('click', (ev) => {
     const techRadioMid = document.createElement('input');
     const radioLabelSenior = document.createElement('label');
     const techRadioSenior = document.createElement('input');
+    const removeBtn = document.createElement('button')
 
     techItem.className = 'tech-item';
     techItem.style.marginBottom = '1em';
@@ -20,6 +22,7 @@ techBtn.addEventListener('click', (ev) => {
     techLabel.htmlFor = 'tech-input';
     techInput.id = 'tech-input';
     techInput.type = 'text';
+    techInput.required = true;  
 
     techRadioJr.type = 'radio';
     techRadioJr.name = 'experiencia';
@@ -39,6 +42,11 @@ techBtn.addEventListener('click', (ev) => {
     radioLabelSenior.appendChild(techRadioSenior);
     radioLabelSenior.append('5+ anos de experiencia com a tecnologia.')
 
+    removeBtn.innerText = 'Remover tecnologia'
+    removeBtn.addEventListener('click', () => {
+        techItem.remove()
+    } )
+
     techItem.appendChild(techLabel);
     techItem.appendChild(document.createElement('br'));
     techItem.appendChild(techInput);
@@ -48,7 +56,34 @@ techBtn.addEventListener('click', (ev) => {
     techItem.appendChild(radioLabelMid);
     techItem.appendChild(document.createElement('br'));
     techItem.appendChild(radioLabelSenior);
+    techItem.appendChild(document.createElement('br'));
+    techItem.appendChild(removeBtn);
     techList.append(techItem);
-
-
 })
+
+form.addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const devName = document.getElementById('fullname').value;
+    const devTechs = [];
+    const techItems = document.querySelectorAll('.tech-item');
+
+    techItems.forEach((techItem) => {
+        const techName = techItem.querySelector('input[type="text"]').value;
+        const techExp = techItem.querySelector('input[name="experiencia"]:checked');
+
+        if (techExp) {
+            devTechs.push({
+                techName: techName,
+                techExp: techExp.value
+            });
+        }
+    });
+    const dev = {
+        name: devName,
+        techs: devTechs
+    };
+
+    console.log(dev);
+    devs.push(dev);
+    form.reset();
+});
