@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desestruturação</title>
+</head>
+<body>
+
+    <h1>Desestruturação de arrays e objetos</h1>
+    
+    <script>
+        const person = {
+            name: 'João',
+            job: 'Desenvolvedor',
+            hobbies: ['Escrever', 'Ler']
+        }
+
+        const { name, job, hobbies} = person;
+        const [hobbieOne, hobbieTwo] = hobbies;
+
+        console.log(`Nome: ${name}\nProfissão: ${job}\nHobbies: ${hobbies}`);
+        console.log(`Hobbies preferidos: ${hobbieOne} e ${hobbieTwo}`);
+
+        const personTwo = {
+            nameTwo: 'Pedro',
+            jobTwo: 'Analista',
+            hobbiesTwo: ['Tocar piano', 'Ouvir música clássica']
+        }
+
+        function getPerson({nameTwo, jobTwo, hobbiesTwo }) {
+            return {nameTwo,
+            jobTwo,
+            hobbiesTwo
+            }
+        }
+
+        const pedro = getPerson(personTwo);
+        console.log(pedro)
+    </script>
+</body>
+</html>
